@@ -5,6 +5,12 @@
   var alta = null;        // { correo, pin } mientras se confirma el código de registro
   var DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
+  // Cada consulta al servidor lleva un número y la sesión del momento en que se pidió:
+  // si llega tarde una respuesta vieja (hay otra consulta más nueva o la sesión cambió), se ignora.
+  var consultas = { semana: 0, login: 0, supervisor: 0 };
+  function pedir(tipo) { return { n: ++consultas[tipo], sesion: sesion ? sesion.id : null }; }
+  function vigente(tipo, p) { return p.n === consultas[tipo] && p.sesion === (sesion ? sesion.id : null); }
+
   var servidor = TurnoAPI.call;
   function recordar(v) { try { v ? localStorage.setItem('horas', JSON.stringify(v)) : localStorage.removeItem('horas'); } catch (e) {} }
   function recordado() { try { return JSON.parse(localStorage.getItem('horas')); } catch (e) { return null; } }
@@ -125,11 +131,13 @@
 
   function entrar(id, pin, silencioso) {
     ocupado($('b-entrar'), true, 'Entrando…');
+    var p = pedir('login');
     servidor('api_login', id, pin, $('fecha').value).then(function (r) {
+      if (!vigente('login', p)) return;
       ocupado($('b-entrar'), false, 'Entrar');
       if (!r.ok) { recordar(null); if (!silencioso) aviso($('m-login'), r.error, 'mal'); mostrar('p-login'); return; }
       aviso($('m-login'), '', 'mal'); abrirSesion(id, r.token || pin, r.nombre, r.semana, r.foto);
-    }).catch(function () { ocupado($('b-entrar'), false, 'Entrar'); fallo($('m-login'))(); });
+    }).catch(function () { if (!vigente('login', p)) return; ocupado($('b-entrar'), false, 'Entrar'); fallo($('m-login'))(); });
   }
   function abrirSesion(id, pin, nombre, semana, foto) {
     sesion = { id: id, pin: pin, nombre: nombre, foto: foto || '' }; recordar({ id: id, pin: pin });
@@ -141,6 +149,10 @@
   $('pin').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('b-entrar').click(); });
 
   function salir() {
+    // aviso al servidor de que la sesión se cierra, sin esperar respuesta
+    if (sesion) { try { servidor('api_salir', sesion.id, sesion.pin).then(function () {}, function () {}); } catch (e) {} }
+    consultas.semana++; consultas.login++; consultas.supervisor++;
+    ocupado($('b-entrar'), false, 'Entrar'); ocupado($('b-guardar'), false, 'Guardar'); ocupado($('b-ver'), false, 'Ver control de horas');
     sesion = null; semanaActual = null; recordar(null); $('id').value = ''; $('pin').value = '';
     ficha(''); aviso($('m-registro'), '', 'ok');
     $('fecha').value = hoy(); mostrar('p-login');
@@ -217,9 +229,11 @@
     if (!sesion || !$('fecha').value) return;
     aviso($('m-registro'), '', 'ok');
     ocupado($('b-guardar'), true, 'Comprobando…');
+    var p = pedir('semana');
     servidor('api_semana', sesion.id, sesion.pin, $('fecha').value).then(function (r) {
+      if (!vigente('semana', p)) return;
       if (r.ok) pintarSemana(r.semana); else ocupado($('b-guardar'), false, 'Guardar');
-    }).catch(function () { ocupado($('b-guardar'), false, 'Guardar'); });
+    }).catch(function () { if (vigente('semana', p)) ocupado($('b-guardar'), false, 'Guardar'); });
   });
 
   $('b-guardar').addEventListener('click', function () {
@@ -270,14 +284,16 @@
     if (!clave || !$('mes').value) { aviso($('m-sup'), 'Escribe la contraseña y elige el mes.', 'mal'); return; }
     var mesPedido = $('mes').value;
     ocupado($('b-ver'), true, 'Cargando…');
+    var p = pedir('supervisor');
     servidor('api_supervisor', clave, mesPedido).then(function (r) {
+      if (!vigente('supervisor', p)) return;
       ocupado($('b-ver'), false, 'Ver control de horas');
       if (!r.ok) { $('sup-datos').classList.add('oculto'); aviso($('m-sup'), r.error, 'mal'); return; }
       claveSup = r.ficha || clave; $('clave').value = ''; $('sup-clave').classList.add('oculto'); aviso($('m-sup'), '', 'mal');
       $('b-olvido').classList.add('oculto'); $('sup-rec').classList.add('oculto');
       supDatos = r; supMes = mesPedido; $('sup-inv').textContent = r.invitacion || ''; aviso($('m-exp'), '', 'ok'); llenarEmpleados(r.lista || []); pintarSup();
       $('sup-emp-caja').classList.remove('oculto'); $('sup-datos').classList.remove('oculto');
-    }).catch(function () { ocupado($('b-ver'), false, 'Ver control de horas'); fallo($('m-sup'))(); });
+    }).catch(function () { if (!vigente('supervisor', p)) return; ocupado($('b-ver'), false, 'Ver control de horas'); fallo($('m-sup'))(); });
   });
 
   // El supervisor elige un empleado y ve solo sus horas del mes; "Todos" muestra el resumen general.
