@@ -23,6 +23,13 @@
   .marca svg { flex:none; display:block; }
   .marca span { font-family:var(--serif); font-weight:600; font-size:21px; letter-spacing:.02em; color:#f2dfb6; }
   .fila-cab { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+  .fila-cab > :first-child { min-width:0; overflow-wrap:anywhere; }
+  .cab-acciones { display:flex; flex:none; align-items:center; gap:6px; }
+  #idioma { appearance:auto; -webkit-appearance:auto; width:62px; height:46px; margin:2px 0 0; padding:0 6px;
+            color-scheme:dark;
+            color:var(--brass-soft); background:var(--ink); border:1px solid var(--brass);
+            border-radius:12px; font:600 14px var(--sans); }
+  #idioma:focus-visible { outline:2px solid var(--brass-soft); outline-offset:2px; }
   button.puerta { flex:none; width:46px; height:46px; margin:2px 0 0; padding:0; display:grid; place-items:center; border-radius:12px;
                   border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.07); color:#f2dfb6; }
   button.puerta:active { background:rgba(255,255,255,.18); }

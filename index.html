@@ -24,15 +24,22 @@
           <svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#d9b877"/><circle cx="256" cy="256" r="152" fill="none" stroke="#0f1c2e" stroke-width="30"/><path d="M196 212 L256 272 L344 168" fill="none" stroke="#0f1c2e" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>Turno</span>
         </div>
-        <h1 id="empresa">Control de horas</h1>
+        <h1 id="empresa" data-i18n="hoursControl">Control de horas</h1>
         <p class="hoy" id="hoy"></p>
       </div>
-      <button id="b-puerta" class="puerta oculto" aria-label="Cerrar sesión" title="Cerrar sesión">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5"/><path d="M13 3.2 5.8 5.1a1 1 0 0 0-.8 1v11.8a1 1 0 0 0 .8 1L13 20.8z"/><circle cx="10.3" cy="12.2" r=".7" fill="currentColor"/></svg>
-      </button>
+      <div class="cab-acciones">
+        <select id="idioma" aria-label="Idioma" data-i18n-aria="language">
+          <option value="es" lang="es" aria-label="Español">ES</option>
+          <option value="it" lang="it" aria-label="Italiano">IT</option>
+          <option value="en" lang="en" aria-label="English">EN</option>
+        </select>
+        <button id="b-puerta" class="puerta oculto" aria-label="Cerrar sesión" title="Cerrar sesión" data-i18n-aria="logout" data-i18n-title="logout">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5"/><path d="M13 3.2 5.8 5.1a1 1 0 0 0-.8 1v11.8a1 1 0 0 0 .8 1L13 20.8z"/><circle cx="10.3" cy="12.2" r=".7" fill="currentColor"/></svg>
+        </button>
+      </div>
     </div>
     <div class="ficha oculto" id="ficha">
-      <div class="avatar"><button id="inic" class="inic" aria-label="Añadir o cambiar foto" title="Añadir o cambiar foto"></button><i>+</i></div>
+      <div class="avatar"><button id="inic" class="inic" aria-label="Añadir o cambiar foto" title="Añadir o cambiar foto" data-i18n-aria="changePhoto" data-i18n-title="changePhoto"></button><i>+</i></div>
       <div><b id="saludo"></b><span id="saludo-id"></span></div>
       <input id="f-foto" type="file" accept="image/*" class="oculto">
     </div>
@@ -42,93 +49,93 @@
 
   <!-- Entrada del empleado -->
   <section id="p-login" class="tarjeta">
-    <h2>Acceso de empleados</h2>
-    <p class="sub">Identifícate con tu ID y tu PIN para registrar tu jornada.</p>
-    <label for="id">ID de empleado</label>
-    <input id="id" inputmode="numeric" autocomplete="off" placeholder="Ejemplo: 101">
-    <label for="pin">PIN</label>
-    <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••">
-    <button id="b-entrar">Entrar</button>
+    <h2 data-i18n="employeeLogin">Acceso de empleados</h2>
+    <p class="sub" data-i18n="loginIntro">Identifícate con tu ID y tu PIN para registrar tu jornada.</p>
+    <label for="id" data-i18n="employeeId">ID de empleado</label>
+    <input id="id" inputmode="numeric" autocomplete="off" placeholder="Ejemplo: 101" data-i18n-placeholder="idExample">
+    <label for="pin" data-i18n="pin">PIN</label>
+    <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="••••" data-i18n-placeholder="pinExample">
+    <button id="b-entrar" data-i18n="signIn">Entrar</button>
     <div id="m-login" class="aviso mal oculto" role="alert"></div>
-    <button id="b-nuevo" class="secundario">Soy nuevo empleado</button>
+    <button id="b-nuevo" class="secundario" data-i18n="newEmployeeButton">Soy nuevo empleado</button>
   </section>
 
   <!-- Alta de empleado nuevo -->
   <section id="p-nuevo" class="tarjeta oculto">
-    <h2>Nuevo empleado</h2>
+    <h2 data-i18n="newEmployee">Nuevo empleado</h2>
     <div id="nuevo-paso1">
-      <p class="sub">Completa tus datos. Te enviaremos un código a tu correo para confirmar el registro.</p>
-      <label for="n-inv">Código de la empresa</label>
-      <input id="n-inv" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="Te lo da tu supervisor" style="text-transform:uppercase">
+      <p class="sub" data-i18n="registerIntro">Completa tus datos. Te enviaremos un código a tu correo para confirmar el registro.</p>
+      <label for="n-inv" data-i18n="companyCode">Código de la empresa</label>
+      <input id="n-inv" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="Te lo da tu supervisor" style="text-transform:uppercase" data-i18n-placeholder="askSupervisor">
       <div class="dos">
-        <div><label for="n-nombre">Nombre</label><input id="n-nombre" autocomplete="given-name" maxlength="40"></div>
-        <div><label for="n-apellido">Apellido</label><input id="n-apellido" autocomplete="family-name" maxlength="40"></div>
+        <div><label for="n-nombre" data-i18n="firstName">Nombre</label><input id="n-nombre" autocomplete="given-name" maxlength="40"></div>
+        <div><label for="n-apellido" data-i18n="lastName">Apellido</label><input id="n-apellido" autocomplete="family-name" maxlength="40"></div>
       </div>
-      <label for="n-correo">Correo electrónico</label>
-      <input id="n-correo" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="nombre@correo.com">
-      <label for="n-tel">Teléfono</label>
-      <div class="prefijo"><span>+39</span><input id="n-tel" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="13" placeholder="333 123 4567"></div>
+      <label for="n-correo" data-i18n="email">Correo electrónico</label>
+      <input id="n-correo" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="nombre@correo.com" data-i18n-placeholder="emailExample">
+      <label for="n-tel" data-i18n="phone">Teléfono</label>
+      <div class="prefijo"><span data-i18n="countryCode">+39</span><input id="n-tel" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="13" placeholder="333 123 4567" data-i18n-placeholder="phoneExample"></div>
       <div class="dos">
-        <div><label for="n-pin">Crea tu PIN</label><input id="n-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="4 a 8 cifras"></div>
-        <div><label for="n-pin2">Repite el PIN</label><input id="n-pin2" type="password" inputmode="numeric" autocomplete="off" maxlength="8"></div>
+        <div><label for="n-pin" data-i18n="createPin">Crea tu PIN</label><input id="n-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="4 a 8 cifras" data-i18n-placeholder="pinLength"></div>
+        <div><label for="n-pin2" data-i18n="repeatPin">Repite el PIN</label><input id="n-pin2" type="password" inputmode="numeric" autocomplete="off" maxlength="8"></div>
       </div>
       <details style="margin-top:18px">
-        <summary>Aviso de privacidad</summary>
+        <summary data-i18n="privacy">Aviso de privacidad</summary>
         <div class="resp">
-          <p><b>Responsable:</b> <span id="priv-empresa">tu empresa</span>.</p>
-          <p><b>Datos que se guardan:</b> nombre, correo, teléfono, foto (opcional) y tus horarios de entrada, salida y pausa.</p>
-          <p><b>Para qué:</b> llevar el control de tu jornada y de tus horas extra.</p>
-          <p><b>Quién los ve:</b> solo tu empresa y sus supervisores. No se ceden a terceros.</p>
-          <p><b>Cuánto tiempo:</b> mientras trabajes en la empresa y el plazo que exija la ley laboral.</p>
-          <p><b>Tus derechos:</b> puedes pedir a tu empresa ver, corregir o borrar tus datos.</p>
+          <p><b data-i18n="controller">Responsable:</b> <span id="priv-empresa" data-i18n="yourCompany">tu empresa</span>.</p>
+          <p><b data-i18n="dataStored">Datos que se guardan:</b> <span data-i18n="dataStoredBody">nombre, correo, teléfono, foto (opcional) y tus horarios de entrada, salida y pausa.</span></p>
+          <p><b data-i18n="dataPurpose">Para qué:</b> <span data-i18n="dataPurposeBody">llevar el control de tu jornada y de tus horas extra.</span></p>
+          <p><b data-i18n="dataAccess">Quién los ve:</b> <span data-i18n="dataAccessBody">solo tu empresa y sus supervisores. No se ceden a terceros.</span></p>
+          <p><b data-i18n="dataRetention">Cuánto tiempo:</b> <span data-i18n="dataRetentionBody">mientras trabajes en la empresa y el plazo que exija la ley laboral.</span></p>
+          <p><b data-i18n="dataRights">Tus derechos:</b> <span data-i18n="dataRightsBody">puedes pedir a tu empresa ver, corregir o borrar tus datos.</span></p>
         </div>
       </details>
-      <label class="acepto" for="n-acepto"><input id="n-acepto" type="checkbox"><span>He leído el aviso de privacidad y acepto el uso de mis datos para el control de horas.</span></label>
-      <button id="b-registrar">Enviar código</button>
+      <label class="acepto" for="n-acepto"><input id="n-acepto" type="checkbox"><span data-i18n="privacyAccept">He leído el aviso de privacidad y acepto el uso de mis datos para el control de horas.</span></label>
+      <button id="b-registrar" data-i18n="sendCode">Enviar código</button>
     </div>
     <div id="nuevo-paso2" class="oculto">
       <p class="sub" id="nuevo-destino"></p>
-      <label for="n-codigo">Código de 6 cifras</label>
-      <input id="n-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
-      <button id="b-confirmar">Confirmar registro</button>
-      <button id="b-corregir" class="enlace">Corregir mis datos</button>
+      <label for="n-codigo" data-i18n="sixDigits">Código de 6 cifras</label>
+      <input id="n-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" data-i18n-placeholder="codeExample">
+      <button id="b-confirmar" data-i18n="confirmRegistration">Confirmar registro</button>
+      <button id="b-corregir" class="enlace" data-i18n="correctDetails">Corregir mis datos</button>
     </div>
     <div id="m-nuevo" class="aviso mal oculto" role="alert"></div>
-    <button id="b-nuevo-volver" class="enlace">Ya tengo ID</button>
+    <button id="b-nuevo-volver" class="enlace" data-i18n="haveId">Ya tengo ID</button>
   </section>
 
   <!-- Registro del día -->
   <section id="p-registro" class="oculto">
     <div class="tarjeta">
-      <h2>Registrar jornada</h2>
-      <p class="sub">Elige el día y tu horario. Cada día se registra una sola vez.</p>
-      <label for="fecha">Fecha</label>
+      <h2 data-i18n="logShift">Registrar jornada</h2>
+      <p class="sub" data-i18n="shiftIntro">Elige el día y tu horario. Cada día se registra una sola vez.</p>
+      <label for="fecha" data-i18n="date">Fecha</label>
       <input id="fecha" type="date">
-      <label class="libre" for="libre"><span>Día libre<small>Márcalo si hoy descansas</small></span><input id="libre" type="checkbox"></label>
+      <label class="libre" for="libre"><span><span data-i18n="dayOff">Día libre</span><small data-i18n="dayOffHelp">Márcalo si hoy descansas</small></span><input id="libre" type="checkbox"></label>
       <div id="horario">
         <div class="dos">
-          <div><label for="entrada">Entrada</label><select id="entrada"></select></div>
-          <div><label for="salida">Salida</label><select id="salida"></select></div>
+          <div><label for="entrada" data-i18n="start">Entrada</label><select id="entrada"></select></div>
+          <div><label for="salida" data-i18n="end">Salida</label><select id="salida"></select></div>
         </div>
-        <label class="libre" for="partido"><span>Turno partido<small>Dos tramos el mismo día</small></span><input id="partido" type="checkbox"></label>
+        <label class="libre" for="partido"><span><span data-i18n="splitShift">Turno partido</span><small data-i18n="splitHelp">Dos tramos el mismo día</small></span><input id="partido" type="checkbox"></label>
         <div id="tramo2" class="dos oculto">
-          <div><label for="entrada2">Entrada 2.ª parte</label><select id="entrada2"></select></div>
-          <div><label for="salida2">Salida 2.ª parte</label><select id="salida2"></select></div>
+          <div><label for="entrada2" data-i18n="startSecond">Entrada 2.ª parte</label><select id="entrada2"></select></div>
+          <div><label for="salida2" data-i18n="endSecond">Salida 2.ª parte</label><select id="salida2"></select></div>
         </div>
-        <label for="pausa">Pausa</label>
-        <select id="pausa"><option id="op-sinpausa" value="0" hidden disabled>Sin pausa</option><option value="30">30 minutos</option><option value="60">1 hora</option></select>
+        <label for="pausa" data-i18n="break">Pausa</label>
+        <select id="pausa"><option id="op-sinpausa" value="0" hidden disabled data-i18n="noBreak">Sin pausa</option><option value="30" data-i18n="halfHour">30 minutos</option><option value="60" data-i18n="oneHour">1 hora</option></select>
       </div>
       <div id="vista" class="vista"></div>
-      <button id="b-guardar">Guardar</button>
+      <button id="b-guardar" data-i18n="save">Guardar</button>
       <div id="m-registro" class="aviso oculto" role="status"></div>
     </div>
     <div class="tarjeta">
-      <h2>Mi semana</h2>
-      <div class="progreso"><span><b id="s-horas">0,00</b> de <span id="s-limite">40</span> h</span><span>Extra <b id="s-extra" class="ex">0,00</b></span></div>
+      <h2 data-i18n="myWeek">Mi semana</h2>
+      <div class="progreso"><span><b id="s-horas">0,00</b> <span data-i18n="outOf">de</span> <span id="s-limite">40</span> h</span><span><span data-i18n="overtime">Extra</span> <b id="s-extra" class="ex">0,00</b></span></div>
       <div class="barra"><i id="s-barra"></i></div>
       <div class="rollo">
         <table>
-          <thead><tr><th>Día</th><th>Horario</th><th>Horas</th><th>Extra</th></tr></thead>
+          <thead><tr><th data-i18n="day">Día</th><th data-i18n="schedule">Horario</th><th data-i18n="hours">Horas</th><th data-i18n="overtime">Extra</th></tr></thead>
           <tbody id="t-semana"></tbody>
         </table>
       </div>
@@ -138,144 +145,144 @@
   <!-- Supervisor -->
   <section id="p-sup" class="oculto">
     <div class="tarjeta">
-      <h2>Área del supervisor</h2>
-      <p class="sub">Consulta el control de horas de todo el equipo.</p>
+      <h2 data-i18n="supervisorArea">Área del supervisor</h2>
+      <p class="sub" data-i18n="supervisorIntro">Consulta el control de horas de todo el equipo.</p>
       <div id="sup-clave">
-        <label for="clave">Contraseña</label>
+        <label for="clave" data-i18n="password">Contraseña</label>
         <input id="clave" type="password" autocomplete="off">
       </div>
       <div id="sup-emp-caja" class="oculto">
-        <label for="sup-emp">Empleado</label>
+        <label for="sup-emp" data-i18n="employee">Empleado</label>
         <select id="sup-emp"></select>
       </div>
-      <label for="mes">Mes</label>
+      <label for="mes" data-i18n="month">Mes</label>
       <input id="mes" type="month">
-      <button id="b-ver">Ver control de horas</button>
+      <button id="b-ver" data-i18n="viewHours">Ver control de horas</button>
       <div id="m-sup" class="aviso mal oculto" role="alert"></div>
-      <button id="b-olvido" class="enlace">Olvidé la contraseña</button>
+      <button id="b-olvido" class="enlace" data-i18n="forgotPassword">Olvidé la contraseña</button>
       <div id="sup-rec" class="oculto">
-        <label for="r-codigo">Código recibido por correo</label>
-        <input id="r-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
-        <label for="r-clave">Nueva contraseña (mínimo 8 caracteres)</label>
+        <label for="r-codigo" data-i18n="codeReceived">Código recibido por correo</label>
+        <input id="r-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" data-i18n-placeholder="codeExample">
+        <label for="r-clave" data-i18n="newPassword">Nueva contraseña (mínimo 8 caracteres)</label>
         <input id="r-clave" type="password" autocomplete="off">
-        <button id="b-cambiar">Cambiar contraseña</button>
+        <button id="b-cambiar" data-i18n="changePassword">Cambiar contraseña</button>
       </div>
     </div>
     <div id="sup-datos" class="oculto">
       <div class="cifras">
-        <div class="cifra"><span id="k-t1">Empleados</span><b id="k-emp">0</b></div>
-        <div class="cifra"><span id="k-t2">Horas</span><b id="k-horas">0</b></div>
-        <div class="cifra ex"><span>Extra</span><b id="k-extra">0</b></div>
+        <div class="cifra"><span id="k-t1" data-i18n="employees">Empleados</span><b id="k-emp">0</b></div>
+        <div class="cifra"><span id="k-t2" data-i18n="hours">Horas</span><b id="k-horas">0</b></div>
+        <div class="cifra ex"><span data-i18n="overtime">Extra</span><b id="k-extra">0</b></div>
       </div>
       <div class="tarjeta">
-        <h2 id="sup-titulo">Resumen por empleado</h2>
+        <h2 id="sup-titulo" data-i18n="employeeSummaries">Resumen por empleado</h2>
         <div class="rollo" style="margin-top:10px"><table>
-          <thead><tr><th>Empleado</th><th>Días</th><th>Libres</th><th>Horas</th><th>Normales</th><th>Extra</th></tr></thead>
+          <thead><tr><th data-i18n="employee">Empleado</th><th data-i18n="days">Días</th><th data-i18n="daysOff">Libres</th><th data-i18n="hours">Horas</th><th data-i18n="regularHours">Normales</th><th data-i18n="overtime">Extra</th></tr></thead>
           <tbody id="t-resumen"></tbody>
         </table></div>
       </div>
       <div class="tarjeta">
-        <h2>Registros del mes</h2>
+        <h2 data-i18n="monthlyRecords">Registros del mes</h2>
         <div class="rollo" style="margin-top:10px"><table>
-          <thead><tr><th>Fecha</th><th>ID</th><th>Empleado</th><th>Horario</th><th>Pausa</th><th>Horas</th><th>Extra</th></tr></thead>
+          <thead><tr><th data-i18n="date">Fecha</th><th data-i18n="id">ID</th><th data-i18n="employee">Empleado</th><th data-i18n="schedule">Horario</th><th data-i18n="break">Pausa</th><th data-i18n="hours">Horas</th><th data-i18n="overtime">Extra</th></tr></thead>
           <tbody id="t-registros"></tbody>
         </table></div>
       </div>
       <div class="tarjeta">
-        <h2>Alta de empleados</h2>
-        <p class="sub">Da este código a cada empleado nuevo. Sin él nadie puede registrarse.</p>
-        <div class="vista"><span>Código de la empresa</span><b id="sup-inv"></b></div>
+        <h2 data-i18n="employeeRegistration">Alta de empleados</h2>
+        <p class="sub" data-i18n="inviteHelp">Da este código a cada empleado nuevo. Sin él nadie puede registrarse.</p>
+        <div class="vista"><span data-i18n="companyCode">Código de la empresa</span><b id="sup-inv"></b></div>
       </div>
       <div class="tarjeta">
-        <h2>Enviar a la gestoría</h2>
-        <p class="sub">Recibe en el correo del supervisor el resumen del mes en un archivo que se abre con Excel.</p>
-        <button id="b-exportar" class="secundario">Enviar resumen del mes a mi correo</button>
+        <h2 data-i18n="sendPayroll">Enviar a la gestoría</h2>
+        <p class="sub" data-i18n="exportHelp">Recibe en el correo del supervisor el resumen del mes en un archivo que se abre con Excel.</p>
+        <button id="b-exportar" class="secundario" data-i18n="sendSummary">Enviar resumen del mes a mi correo</button>
         <div id="m-exp" class="aviso oculto" role="status"></div>
       </div>
     </div>
-    <button id="b-volver" class="enlace">Volver al registro</button>
+    <button id="b-volver" class="enlace" data-i18n="backToLog">Volver al registro</button>
   </section>
 
   <!-- Ayuda -->
   <section id="p-ayuda" class="oculto">
     <div class="tarjeta">
-      <h2>Ayuda</h2>
-      <p class="sub">Toca tu problema para ver la solución. Si no se resuelve, envíanos un reporte más abajo.</p>
+      <h2 data-i18n="help">Ayuda</h2>
+      <p class="sub" data-i18n="helpIntro">Toca tu problema para ver la solución. Si no se resuelve, envíanos un reporte más abajo.</p>
       <details>
-        <summary>Olvidé mi PIN o mi ID</summary>
+        <summary data-i18n="forgotPin">Olvidé mi PIN o mi ID</summary>
         <div class="resp">
-          <p>Te enviamos un correo con tu ID y un código para crear un PIN nuevo. Usa el correo con el que te registraste.</p>
+          <p data-i18n="forgotPinHelp">Te enviamos un correo con tu ID y un código para crear un PIN nuevo. Usa el correo con el que te registraste.</p>
           <div id="rp-1">
-            <label for="rp-correo">Tu correo electrónico</label>
-            <input id="rp-correo" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="nombre@correo.com">
-            <button id="b-rp-enviar">Enviar código</button>
+            <label for="rp-correo" data-i18n="yourEmail">Tu correo electrónico</label>
+            <input id="rp-correo" type="email" inputmode="email" autocomplete="email" maxlength="80" placeholder="nombre@correo.com" data-i18n-placeholder="emailExample">
+            <button id="b-rp-enviar" data-i18n="sendCode">Enviar código</button>
           </div>
           <div id="rp-2" class="oculto">
-            <label for="rp-codigo">Código de 6 cifras</label>
-            <input id="rp-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+            <label for="rp-codigo" data-i18n="sixDigits">Código de 6 cifras</label>
+            <input id="rp-codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" data-i18n-placeholder="codeExample">
             <div class="dos">
-              <div><label for="rp-pin">PIN nuevo</label><input id="rp-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="4 a 8 cifras"></div>
-              <div><label for="rp-pin2">Repite el PIN</label><input id="rp-pin2" type="password" inputmode="numeric" autocomplete="off" maxlength="8"></div>
+              <div><label for="rp-pin" data-i18n="newPin">PIN nuevo</label><input id="rp-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="4 a 8 cifras" data-i18n-placeholder="pinLength"></div>
+              <div><label for="rp-pin2" data-i18n="repeatPin">Repite el PIN</label><input id="rp-pin2" type="password" inputmode="numeric" autocomplete="off" maxlength="8"></div>
             </div>
-            <button id="b-rp-cambiar">Cambiar PIN</button>
+            <button id="b-rp-cambiar" data-i18n="changePin">Cambiar PIN</button>
           </div>
           <div id="m-rp" class="aviso oculto" role="status"></div>
         </div>
       </details>
       <details>
-        <summary>Al abrir la app sale un error de Google Drive</summary>
-        <div class="resp"><p>Pasa cuando el teléfono tiene varias cuentas de Google abiertas. Abre el enlace en una pestaña de incógnito, o en otro navegador donde no tengas sesiones de Google.</p></div>
+        <summary data-i18n="driveError">Al abrir la app sale un error de Google Drive</summary>
+        <div class="resp"><p data-i18n="driveHelp">Pasa cuando el teléfono tiene varias cuentas de Google abiertas. Abre el enlace en una pestaña de incógnito, o en otro navegador donde no tengas sesiones de Google.</p></div>
       </details>
       <details>
-        <summary>Pongo mi PIN y dice que es incorrecto</summary>
-        <div class="resp"><p>Comprueba que el ID es el tuyo y que el PIN no tiene espacios. Tras 5 intentos fallidos el acceso se bloquea 15 minutos. Si no lo recuerdas, usa "Olvidé mi PIN o mi ID", aquí arriba.</p></div>
+        <summary data-i18n="wrongPin">Pongo mi PIN y dice que es incorrecto</summary>
+        <div class="resp"><p data-i18n="wrongPinHelp">Comprueba que el ID es el tuyo y que el PIN no tiene espacios. Tras 5 intentos fallidos el acceso se bloquea 15 minutos. Si no lo recuerdas, usa "Olvidé mi PIN o mi ID", aquí arriba.</p></div>
       </details>
       <details>
-        <summary>Me equivoqué al registrar un día</summary>
-        <div class="resp"><p>Cada día se registra una sola vez y no se puede cambiar desde el teléfono. Avisa a tu supervisor, que puede corregirlo, o envía un reporte indicando el día y el horario correcto.</p></div>
+        <summary data-i18n="wrongShift">Me equivoqué al registrar un día</summary>
+        <div class="resp"><p data-i18n="wrongShiftHelp">Cada día se registra una sola vez y no se puede cambiar desde el teléfono. Avisa a tu supervisor, que puede corregirlo, o envía un reporte indicando el día y el horario correcto.</p></div>
       </details>
       <details>
-        <summary>No me llega el código al correo</summary>
-        <div class="resp"><p>Mira en la carpeta de spam o correo no deseado. El código puede tardar un minuto y solo se puede pedir uno cada 2 minutos. Revisa también que escribiste bien tu correo.</p></div>
+        <summary data-i18n="missingCode">No me llega el código al correo</summary>
+        <div class="resp"><p data-i18n="missingCodeHelp">Mira en la carpeta de spam o correo no deseado. El código puede tardar un minuto y solo se puede pedir uno cada 2 minutos. Revisa también que escribiste bien tu correo.</p></div>
       </details>
       <details>
-        <summary>Soy supervisor y olvidé la contraseña</summary>
-        <div class="resp"><p>Entra en "Acceso del supervisor" y toca "Olvidé la contraseña". Recibirás un código en el correo del supervisor para crear una nueva.</p></div>
+        <summary data-i18n="supervisorForgot">Soy supervisor y olvidé la contraseña</summary>
+        <div class="resp"><p data-i18n="supervisorForgotHelp">Entra en "Acceso del supervisor" y toca "Olvidé la contraseña". Recibirás un código en el correo del supervisor para crear una nueva.</p></div>
       </details>
     </div>
     <div class="tarjeta">
-      <h2>Enviar un reporte</h2>
-      <p class="sub">Cuéntanos qué ocurre y lo revisaremos.</p>
-      <label for="rep-tipo">Tipo de problema</label>
+      <h2 data-i18n="reportHeading">Enviar un reporte</h2>
+      <p class="sub" data-i18n="reportIntro">Cuéntanos qué ocurre y lo revisaremos.</p>
+      <label for="rep-tipo" data-i18n="issueType">Tipo de problema</label>
       <select id="rep-tipo">
-        <option>PIN o contraseña</option><option>ID de empleado</option><option>Inicio de sesión</option>
-        <option>Registro de horas</option><option>Otro</option>
+        <option value="PIN o contraseña" data-i18n="pinOrPassword">PIN o contraseña</option><option value="ID de empleado" data-i18n="employeeId">ID de empleado</option><option value="Inicio de sesión" data-i18n="signInIssue">Inicio de sesión</option>
+        <option value="Registro de horas" data-i18n="timeLogIssue">Registro de horas</option><option value="Otro" data-i18n="otherIssue">Otro</option>
       </select>
-      <label for="rep-msg">¿Qué ocurre?</label>
-      <textarea id="rep-msg" maxlength="1000" placeholder="Ejemplo: pongo mi PIN correcto y me dice que es incorrecto."></textarea>
-      <label for="rep-contacto">Correo o teléfono para responderte</label>
-      <input id="rep-contacto" maxlength="80" placeholder="Opcional">
-      <button id="b-rep">Enviar reporte</button>
+      <label for="rep-msg" data-i18n="issueDescription">¿Qué ocurre?</label>
+      <textarea id="rep-msg" maxlength="1000" placeholder="Ejemplo: pongo mi PIN correcto y me dice que es incorrecto." data-i18n-placeholder="reportExample"></textarea>
+      <label for="rep-contacto" data-i18n="replyContact">Correo o teléfono para responderte</label>
+      <input id="rep-contacto" maxlength="80" placeholder="Opcional" data-i18n-placeholder="optional">
+      <button id="b-rep" data-i18n="sendReport">Enviar reporte</button>
       <div id="m-rep" class="aviso oculto" role="status"></div>
     </div>
-    <button id="b-ayuda-volver" class="enlace">Volver</button>
+    <button id="b-ayuda-volver" class="enlace" data-i18n="back">Volver</button>
   </section>
 
   <footer>
-    <button id="b-ayuda" class="enlace"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.6 5.8a1.9 1.9 0 1 1 2.7 1.7c-.5.3-.8.7-.8 1.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7.5" cy="11" r=".9" fill="currentColor"/></svg>Ayuda</button>
-    <button id="b-sup" class="enlace"><svg width="13" height="15" viewBox="0 0 13 15" fill="none" aria-hidden="true"><rect x="1" y="6.5" width="11" height="7.5" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6.5V4.2a3 3 0 0 1 6 0v2.3" stroke="currentColor" stroke-width="1.5"/></svg>Acceso del supervisor</button>
-    <p>Turno · Control de horas</p>
-    <details class="pwa-help"><summary>Instalar Turno</summary><p>En Android o Chrome, abre el menú del navegador y elige «Instalar aplicación». En iPhone o iPad, abre esta página en Safari, pulsa Compartir y «Añadir a la pantalla de inicio».</p><p>Se necesita conexión para consultar o guardar horas. Los registros no se guardan sin conexión.</p><button id="pwa-install" type="button" hidden>Instalar aplicación</button></details>
+    <button id="b-ayuda" class="enlace"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.6 5.8a1.9 1.9 0 1 1 2.7 1.7c-.5.3-.8.7-.8 1.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7.5" cy="11" r=".9" fill="currentColor"/></svg><span data-i18n="help">Ayuda</span></button>
+    <button id="b-sup" class="enlace"><svg width="13" height="15" viewBox="0 0 13 15" fill="none" aria-hidden="true"><rect x="1" y="6.5" width="11" height="7.5" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 6.5V4.2a3 3 0 0 1 6 0v2.3" stroke="currentColor" stroke-width="1.5"/></svg><span data-i18n="supervisorLogin">Acceso del supervisor</span></button>
+    <p data-i18n="footer">Turno · Control de horas</p>
+    <details class="pwa-help"><summary data-i18n="installTurno">Instalar Turno</summary><p data-i18n="installHelp">En Android o Chrome, abre el menú del navegador y elige «Instalar aplicación». En iPhone o iPad, abre esta página en Safari, pulsa Compartir y «Añadir a la pantalla de inicio».</p><p data-i18n="installOffline">Se necesita conexión para consultar o guardar horas. Los registros no se guardan sin conexión.</p><button id="pwa-install" type="button" hidden data-i18n="installApp">Instalar aplicación</button></details>
   </footer>
 
   <!-- Confirmación de cierre de sesión -->
   <div id="dlg" class="velo oculto" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
     <div class="dlg">
-      <h2 id="dlg-t">¿Cerrar sesión?</h2>
-      <p class="sub">Se va a cerrar tu sesión en este teléfono.</p>
+      <h2 id="dlg-t" data-i18n="logoutQuestion">¿Cerrar sesión?</h2>
+      <p class="sub" data-i18n="logoutHelp">Se va a cerrar tu sesión en este teléfono.</p>
       <div class="dos">
-        <button id="dlg-no" class="secundario">Cancelar</button>
-        <button id="dlg-si">Aceptar</button>
+        <button id="dlg-no" class="secundario" data-i18n="cancel">Cancelar</button>
+        <button id="dlg-si" data-i18n="accept">Aceptar</button>
       </div>
     </div>
   </div>
@@ -283,6 +290,7 @@
 
 <script src="./config.js"></script>
 <script src="./api.js"></script>
+<script src="./i18n.js"></script>
 <script src="./app.js"></script>
 <script src="./pwa.js"></script>
 </body>
