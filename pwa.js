@@ -1,5 +1,10 @@
 (function () {
   'use strict';
+  // Si otra web mete Turno en un marco (para engañar con clics), se oculta y se intenta salir del marco.
+  if (window.top !== window.self) {
+    document.documentElement.style.display = 'none';
+    try { window.top.location = window.location.href; } catch (e) {}
+  }
   var status = document.getElementById('app-status');
   function connection() {
     var message = '';

@@ -1,6 +1,6 @@
 'use strict';
 // Incrementar al publicar cambios en los archivos estáticos.
-const CACHE = 'turno-shell-v2';
+const CACHE = 'turno-shell-v3';
 const SHELL = ['./', './index.html', './styles.css', './config.js', './api.js', './i18n.js', './app.js', './pwa.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
 const ASSETS = new Set(SHELL.map(path => new URL(path, self.registration.scope).href));
 self.addEventListener('install', event => {

@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0f1c2e">
+<!-- Solo se cargan scripts propios y solo se habla con el servidor de Apps Script -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Turno</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icons/icon-192.png">
@@ -11,7 +14,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -66,7 +69,7 @@
     <div id="nuevo-paso1">
       <p class="sub" data-i18n="registerIntro">Completa tus datos. Te enviaremos un código a tu correo para confirmar el registro.</p>
       <label for="n-inv" data-i18n="companyCode">Código de la empresa</label>
-      <input id="n-inv" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="Te lo da tu supervisor" style="text-transform:uppercase" data-i18n-placeholder="askSupervisor">
+      <input id="n-inv" autocomplete="off" autocapitalize="characters" maxlength="12" placeholder="Te lo da tu supervisor" class="mayus" data-i18n-placeholder="askSupervisor">
       <div class="dos">
         <div><label for="n-nombre" data-i18n="firstName">Nombre</label><input id="n-nombre" autocomplete="given-name" maxlength="40"></div>
         <div><label for="n-apellido" data-i18n="lastName">Apellido</label><input id="n-apellido" autocomplete="family-name" maxlength="40"></div>
@@ -79,7 +82,7 @@
         <div><label for="n-pin" data-i18n="createPin">Crea tu PIN</label><input id="n-pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="4 a 8 cifras" data-i18n-placeholder="pinLength"></div>
         <div><label for="n-pin2" data-i18n="repeatPin">Repite el PIN</label><input id="n-pin2" type="password" inputmode="numeric" autocomplete="off" maxlength="8"></div>
       </div>
-      <details style="margin-top:18px">
+      <details class="mt18">
         <summary data-i18n="privacy">Aviso de privacidad</summary>
         <div class="resp">
           <p><b data-i18n="controller">Responsable:</b> <span id="priv-empresa" data-i18n="yourCompany">tu empresa</span>.</p>
@@ -176,14 +179,14 @@
       </div>
       <div class="tarjeta">
         <h2 id="sup-titulo" data-i18n="employeeSummaries">Resumen por empleado</h2>
-        <div class="rollo" style="margin-top:10px"><table>
+        <div class="rollo mt10"><table>
           <thead><tr><th data-i18n="employee">Empleado</th><th data-i18n="days">Días</th><th data-i18n="daysOff">Libres</th><th data-i18n="hours">Horas</th><th data-i18n="regularHours">Normales</th><th data-i18n="overtime">Extra</th></tr></thead>
           <tbody id="t-resumen"></tbody>
         </table></div>
       </div>
       <div class="tarjeta">
         <h2 data-i18n="monthlyRecords">Registros del mes</h2>
-        <div class="rollo" style="margin-top:10px"><table>
+        <div class="rollo mt10"><table>
           <thead><tr><th data-i18n="date">Fecha</th><th data-i18n="id">ID</th><th data-i18n="employee">Empleado</th><th data-i18n="schedule">Horario</th><th data-i18n="break">Pausa</th><th data-i18n="hours">Horas</th><th data-i18n="overtime">Extra</th></tr></thead>
           <tbody id="t-registros"></tbody>
         </table></div>

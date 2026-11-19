@@ -158,3 +158,5 @@
 @media (display-mode:standalone){.pwa-help{display:none}}
 .pwa-help summary{cursor:pointer;font-weight:700}
 [hidden]{display:none!important}
+
+.mayus{text-transform:uppercase}.mt18{margin-top:18px}.mt10{margin-top:10px}

@@ -406,6 +406,7 @@
               id: sesion ? sesion.id : $('id').value.trim(), dispositivo: navigator.userAgent };
     if (d.mensaje.length < 10) { aviso($('m-rep'), function () { return t('reportTooShort'); }, 'mal'); return; }
     ocupado($('b-rep'), true, function () { return t('sending'); });
+    if (sesion) d.ficha = sesion.pin;
     servidor('api_reporte', d).then(function (r) {
       ocupado($('b-rep'), false, function () { return t('sendReport'); });
       if (!r.ok) { aviso($('m-rep'), r.error, 'mal'); return; }
